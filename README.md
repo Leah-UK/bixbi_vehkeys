@@ -30,5 +30,4 @@ Example:<code>TriggerEvent('bixbi_collection:AddKey', 1, "LE4H")</code>
 Example:<code>TriggerEvent('bixbi_vehkeys:RemoveKey', 1, "LE4H")</code>
 
 ---
-
-<p align='center'><i>Feel free to modify / rename things to your liking. I just ask that you keep my name <b>(Leah#0001)</b> in the credits of the fxmanifest.</i></p>
+<p align='center'><i>Feel free to modify to your liking. Please keep my name <b>(Leah#0001)</b> in the credits of the fxmanifest. <b>If your modification is a bug-fix I ask that you make a pull request, this is a free script; please contribute when you can.</b></i></p>
