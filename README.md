@@ -22,11 +22,11 @@ A very basic vehicle locking system. By default players part of the ambulance or
 
 <b>Give Player a Key - Server Only</b>
 <code>TriggerEvent('bixbi_vehkeys:AddKey', playerId, plate)</code>
-<b>Example:</b><code>TriggerEvent('bixbi_collection:AddKey', 1, "LE4H")</code>
+Example:<code>TriggerEvent('bixbi_collection:AddKey', 1, "LE4H")</code>
 
 <b>Remove Key from Player - Server Only</b>
 <code>TriggerEvent('bixbi_vehkeys:RemoveKey', playerId, plate)</code>
-<b>Example:</b><code>TriggerEvent('bixbi_vehkeys:RemoveKey', 1, "LE4H")</code>
+Example:<code>TriggerEvent('bixbi_vehkeys:RemoveKey', 1, "LE4H")</code>
 
 ---
 
