@@ -1,5 +1,5 @@
 local toggled = false
--- RegisterNetEvent("bixbi_collection:ToggleLock")
+-- RegisterNetEvent("bixbi_vehkeys:ToggleLock")
 function ToggleLock()
     if (toggled) then return end
     toggled = true
@@ -15,16 +15,16 @@ function ToggleLock()
         if (seat == -1 or seat == 0) then
             local vehicle = GetVehiclePedIsIn(playerPed, false)
             local lockState = not GetVehicleDoorsLockedForPlayer(vehicle, PlayerId())
-            TriggerServerEvent('bixbi_collection:CheckKey', vehicle, GetVehicleNumberPlateText(vehicle), lockState, GetVehicleClass(vehicle))
+            TriggerServerEvent('bixbi_vehkeys:CheckKey', vehicle, GetVehicleNumberPlateText(vehicle), lockState, GetVehicleClass(vehicle))
         end
     elseif (vehInFront ~= false) then
         local lockState = not GetVehicleDoorsLockedForPlayer(vehInFront, PlayerId())
-        TriggerServerEvent('bixbi_collection:CheckKey', vehInFront, GetVehicleNumberPlateText(vehInFront), lockState, GetVehicleClass(vehicle))
+        TriggerServerEvent('bixbi_vehkeys:CheckKey', vehInFront, GetVehicleNumberPlateText(vehInFront), lockState, GetVehicleClass(vehicle))
     end
 end
 
-RegisterNetEvent("bixbi_collection:ToggleLockAction")
-AddEventHandler("bixbi_collection:ToggleLockAction", function(vehicle, state)
+RegisterNetEvent("bixbi_vehkeys:ToggleLockAction")
+AddEventHandler("bixbi_vehkeys:ToggleLockAction", function(vehicle, state)
     local playerPed = PlayerPedId()
 
     local dict = "anim@mp_player_intmenu@key_fob@"
@@ -61,7 +61,7 @@ exports['qtarget']:Player({
 })
 
 function GiveKeys(playerId)
-    ESX.TriggerServerCallback('bixbi_collection:UserKeys', function(keys)
+    ESX.TriggerServerCallback('bixbi_vehkeys:UserKeys', function(keys)
         while (keys == nil) do Citizen.Wait(100) end
         if (#keys == 0) then
             exports.bixbi_core:Notify('success', 'No keys found.')
@@ -70,27 +70,14 @@ function GiveKeys(playerId)
 
         local elements = {}
         for _, v in pairs(keys) do
-            table.insert(elements, {id = #elements+1, header = v, txt = ' ', params = { event = 'bixbi_collection:GiveKeys', args = { playerId = playerId, plate = v }}})
+            table.insert(elements, {id = #elements+1, header = v, txt = ' ', params = { event = 'bixbi_vehkeys:GiveKeys', args = { playerId = playerId, plate = v }}})
         end
         exports['zf_context']:openMenu(elements)
     end)
-    -- local dialog = exports['zf_dialog']:DialogInput({
-    --     header = "Send Bill", 
-    --     rows = {
-    --         {
-    --             id = 0, 
-    --             txt = "Plate Number"
-    --         }
-    --     }
-    -- })
-    -- if dialog ~= nil then
-    --     if dialog[1].input == nil then return end
-    --     TriggerServerEvent('bixbi_collection:AddKey', playerId, dialog[1].input)
-    -- end
 end
 
-AddEventHandler('bixbi_collection:GiveKeys', function(data)
-    TriggerServerEvent('bixbi_collection:AddKey', data.playerId, data.plate)
+AddEventHandler('bixbi_vehkeys:GiveKeys', function(data)
+    TriggerServerEvent('bixbi_vehkeys:AddKey', data.playerId, data.plate)
 end)
 
 function GetSeatPedIsIn(ped)

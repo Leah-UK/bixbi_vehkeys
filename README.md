@@ -3,7 +3,30 @@
 
 ---
 
+<h2 align='center'>Information</h2>
 
+A very basic vehicle locking system. By default players part of the ambulance or police job can open any <b>emergency</b> vehicle as if it was their own. You can change this in server.lua and within the 'bixbi_vehkeys:CheckKey' event.
+
+---
+
+<h2 align='center'>Requirements</h2>
+
+- <a href='https://github.com/overextended/es_extended'>"Ox" ESX</a>,<i> You can modify for other frameworks. <b>Please make a PR if you do</b></i>
+- <a href='https://github.com/Leah-UK/bixbi_core'>bixbi_core</a>
+- <a href='https://github.com/zf-development/zf_dialog'>zf_dialog</a>
+
+---
+
+<h2 align='center'>Exports</h2>
+<i>You will need to use the following exports when a vehicle is spawned, to give them the correct key</i>
+
+<b>Give Player a Key - Server Only</b>
+<code>TriggerEvent('bixbi_vehkeys:AddKey', playerId, plate)</code>
+<b>Example:</b><code>TriggerEvent('bixbi_collection:AddKey', 1, "LE4H")</code>
+
+<b>Remove Key from Player - Server Only</b>
+<code>TriggerEvent('bixbi_vehkeys:RemoveKey', playerId, plate)</code>
+<b>Example:</b><code>TriggerEvent('bixbi_vehkeys:RemoveKey', 1, "LE4H")</code>
 
 ---
 
